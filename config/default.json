@@ -1,0 +1,10 @@
+{
+  "host": "localhost",
+  "port": 3030,
+  "public": "../public/",
+  "paginate": {
+    "default": 10,
+    "max": 50
+  },
+  "mysql": "mysql://uimx3vr4j1i2byuu:byo8gp2qlaWqHkcnmVg@bi19jm33m-mysql.services.clever-cloud.com:3306/bi19jm33m"
+}
