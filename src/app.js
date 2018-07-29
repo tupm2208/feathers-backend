@@ -10,16 +10,14 @@ const configuration = require('@feathersjs/configuration');
 const express = require('@feathersjs/express');
 const socketio = require('@feathersjs/socketio');
 
-const Sequelize = require('sequelize');
 const sequelize = require('./sequelize');
-const service = require('feathers-sequelize');
 
 const middleware = require('./middleware');
 const services = require('./services');
 const appHooks = require('./app.hooks');
 const channels = require('./channels');
 
-
+const authentication = require('./authentication');
 
 const app = express(feathers());
 
@@ -39,18 +37,11 @@ app.use('/', express.static(app.get('public')));
 app.configure(express.rest());
 app.configure(socketio());
 
-// app.use('/messages', service({
-//     Model: Message,
-//     paginate: {
-//         default: 2,
-//         max: 4
-//     }
-// }));
-
 app.configure(sequelize);
 
 // Configure other middleware (see `middleware/index.js`)
 app.configure(middleware);
+app.configure(authentication);
 // Set up our services (see `services/index.js`)
 app.configure(services);
 // Set up event channels (see channels.js)
@@ -62,12 +53,5 @@ app.use(express.errorHandler({ logger }));
 
 
 app.hooks(appHooks);
-
-const messageEvent = app.service('adidas');
-
-messageEvent.on('created', message => {
-
-    console.log("message: ", message);
-})
 
 module.exports = app;

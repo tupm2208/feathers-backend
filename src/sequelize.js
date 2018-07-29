@@ -43,13 +43,13 @@ module.exports = function (app) {
   const sequelize = new Sequelize('bi19jm33m', 'uimx3vr4j1i2byuu', 'byo8gp2qlaWqHkcnmVg', {
     host: 'bi19jm33m-mysql.services.clever-cloud.com',
     dialect: 'mysql',
-    logging: false,
+    logging: true,
     port: 3306,
-    // operatorsAliases,
-    operatorsAliases: false,
+    operatorsAliases,
+    // operatorsAliases: false,
     define: {
       freezeTableName: true,
-      timestamps: false
+      timestamps: true
     },
     pool: {
       max: 5,

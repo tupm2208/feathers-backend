@@ -1,18 +1,49 @@
-<html>
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0" />
-    <title>Vanilla JavaScript Feathers Chat</title>
-    <link rel="shortcut icon" href="favicon.ico">
-    <link rel="stylesheet" href="//cdn.rawgit.com/feathersjs/feathers-chat/v0.2.0/public/base.css">
-    <link rel="stylesheet" href="//cdn.rawgit.com/feathersjs/feathers-chat/v0.2.0/public/chat.css">
-  </head>
-  <body>
-    <div id="app" class="flex flex-column"></div>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.js"></script>
-    <script src="//unpkg.com/@feathersjs/client@^3.0.0/dist/feathers.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="app.js"></script>
-  </body>
-</html>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/core-js/2.1.4/core.min.js"></script>
+<script src="//unpkg.com/@feathersjs/client@^3.0.0/dist/feathers.js"></script>
+<script src="//unpkg.com/socket.io-client@1.7.3/dist/socket.io.js"></script>
+<script>
+  // Socket.io is exposed as the `io` global.
+  var socket = io('http://localhost:3030');
+  // @feathersjs/client is exposed as the `feathers` global.
+  var app = feathers();
+
+    const options = {
+      header: 'Authorization', // the default authorization header for REST
+      prefix: '', // if set will add a prefix to the header value. for example if prefix was 'JWT' then the header would be 'Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOi...'
+      path: '/authentication', // the server-side authentication service path
+      jwtStrategy: 'jwt', // the name of the JWT authentication strategy 
+      entity: 'user', // the entity you are authenticating (ie. a users)
+      service: 'users', // the service to look up the entity
+      cookie: 'feathers-jwt', // the name of the cookie to parse the JWT from when cookies are enabled server side
+      storageKey: 'feathers-jwt', // the key to store the accessToken in localstorage or AsyncStorage on React Native
+      storage: undefined // Passing a WebStorage-compatible object to enable automatic storage on the client.
+    }
+
+  app.configure(feathers.socketio(socket));
+  app.configure(feathers.authentication());
+
+  app.authenticate({
+    "strategy": "local",
+    "email": "tupm@example.com",
+    "password": "secret"
+  }).then(data => {
+    console.log("authen ok: ", data);
+
+    messageService.find({
+      query: { $skip: 1 }
+    }).then(data => {
+      console.log("data: ", data);
+    })
+
+    // messageService.create({
+    //   text: 'Message from client'
+    // })
+  })
+
+  const messageService = app.service('adidas')
+
+  messageService.on('created', message => console.log('Created a message', message));
+
+
+  // feathers.errors is an object with all of the custom error types.
+</script>

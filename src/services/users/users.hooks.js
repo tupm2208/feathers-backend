@@ -1,8 +1,8 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
 
-function setOrderDesc(data) {
-  data.params.query.$sort = { id: -1 };
-}
+const {
+  hashPassword, protect
+} = require('@feathersjs/authentication-local').hooks;
 
 function setCreatedAt(data) {
 
@@ -18,16 +18,20 @@ function setUpdatedAt(data) {
 module.exports = {
   before: {
     all: [],
-    find: [setOrderDesc],
-    get: [setOrderDesc],
-    create: [setCreatedAt],
-    update: [setUpdatedAt],
-    patch: [setUpdatedAt],
-    remove: []
+    find: [ authenticate('jwt') ],
+    get: [ authenticate('jwt') ],
+    create: [ hashPassword(), setCreatedAt ],
+    update: [ hashPassword(),  authenticate('jwt'), setUpdatedAt ],
+    patch: [ hashPassword(),  authenticate('jwt'), setUpdatedAt ],
+    remove: [ authenticate('jwt') ]
   },
 
   after: {
-    all: [],
+    all: [ 
+      // Make sure the password field is never sent to the client
+      // Always must be the last hook
+      protect('password')
+    ],
     find: [],
     get: [],
     create: [],

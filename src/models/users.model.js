@@ -5,28 +5,33 @@ const DataTypes = Sequelize.DataTypes;
 
 module.exports = function (app) {
   const sequelizeClient = app.get('sequelizeClient');
-  const adidas = sequelizeClient.define('message', {
-    text: {
+  const users = sequelizeClient.define('users', {
+  
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
+    password: {
       type: DataTypes.STRING,
       allowNull: false
-    }, 
+    },
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,
-  }, {
-      hooks: {
-        beforeCount(options) {
-          options.raw = true;
-        }
-      }
-    });
-
   
+  }, {
+    hooks: {
+      beforeCount(options) {
+        options.raw = true;
+      }
+    }
+  });
 
   // eslint-disable-next-line no-unused-vars
-  adidas.associate = function (models) {
+  users.associate = function (models) {
     // Define associations here
     // See http://docs.sequelizejs.com/en/latest/docs/associations/
   };
 
-  return adidas;
+  return users;
 };

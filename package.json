@@ -28,6 +28,10 @@
     "mocha": "mocha test/ --recursive --exit"
   },
   "dependencies": {
+    "@feathersjs/authentication": "^2.1.7",
+    "@feathersjs/authentication-jwt": "^2.0.1",
+    "@feathersjs/authentication-local": "^1.2.1",
+    "@feathersjs/authentication-oauth2": "^1.1.0",
     "@feathersjs/configuration": "^1.0.2",
     "@feathersjs/errors": "^3.3.0",
     "@feathersjs/express": "^1.2.3",
@@ -39,6 +43,7 @@
     "feathers-sequelize": "^3.1.2",
     "helmet": "^3.12.2",
     "mysql2": "^1.5.3",
+    "passport-facebook": "^2.1.1",
     "sequelize": "^4.38.0",
     "serve-favicon": "^2.5.0",
     "socket.io-client": "^2.1.1",
