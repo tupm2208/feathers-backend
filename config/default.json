@@ -25,8 +25,8 @@
       "expiresIn": "1d"
     },
     "facebook": {
-      "clientID": "your facebook client id",
-      "clientSecret": "your facebook client secret",
+      "clientID": "2069998766651759",
+      "clientSecret": "1922b0226f3723e51658253c76cc036d",
       "successRedirect": "/",
       "scope": [
         "public_profile",
