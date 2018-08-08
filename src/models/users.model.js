@@ -16,8 +16,7 @@ module.exports = function (app) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE,
+    facebookId: DataTypes.INTEGER
   
   }, {
     hooks: {

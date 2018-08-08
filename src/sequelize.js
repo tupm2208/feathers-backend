@@ -40,22 +40,15 @@ const operatorsAliases = {
 
 module.exports = function (app) {
   const connectionString = app.get('mysql');
-  const sequelize = new Sequelize('bi19jm33m', 'uimx3vr4j1i2byuu', 'byo8gp2qlaWqHkcnmVg', {
-    host: 'bi19jm33m-mysql.services.clever-cloud.com',
+  const sequelize = new Sequelize('adidas', 'root', 'hamphuong3003', {
+    // host: 'bi19jm33m-mysql.services.clever-cloud.com',
     dialect: 'mysql',
     logging: true,
     port: 3306,
     operatorsAliases,
-    // operatorsAliases: false,
     define: {
       freezeTableName: true,
-      timestamps: true
-    },
-    pool: {
-      max: 5,
-      min: 0,
-      acquire: 30000,
-      idle: 10000
+      timestamps: false
     }
   });
   const oldSetup = app.setup;
