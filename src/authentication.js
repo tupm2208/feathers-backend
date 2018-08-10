@@ -18,9 +18,9 @@ module.exports = function (app) {
       // console.log("req: ", request);
       const {email, socialId, socialToken} = request.body;
 
-      verifyFacebook("EAAJZCWP2r078BAL3u108m7ZBO2HCc40jJTXJpFHfgORCFDRjTScafZB36KVX0lO02e0UoqTm0qLrmNxwxZA5YGn4WZAyDvQnV2Xg87lyvXfZBj196LPnBMnVjxCFabYlluZCZCkI0uGWIjwQsbNhO9PZBtzZBmS9DPEfyY9dUpReCZAcPxTeZB22PZCP3w4DmKJavhbbCahrmnBa2wgZDZD").then(succes => {}, error => {})
+      verifyFacebook("EAAdapyUrZBW8BAE5peEKvOhK2dbqLJKO989sLfwFbQnxmIMCllr1kZA77z2bZArfjn1C7ocWaD7CZBHDH4V1oaCa4N8mZBFDXdGlhuMLpra2ZBsYH2laID4z7gPHaZAXfVNG4O6ZAJ97WGA2hkTcYkZAOmZBGEYAJFWRD7LZALi3XZBVrZBNBS6PnrNzSAaTbYnAH3eQPtb0I7zc6TQZDZD").then(succes => {}, error => {})
     } catch( error) {
-      console.log("catch: ", error);
+      console.log("catch: ");
     }
   }))
 

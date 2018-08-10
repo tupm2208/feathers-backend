@@ -8,7 +8,7 @@ module.exports = (fbToken) => {
         axios.get(`https://graph.facebook.com/oauth/access_token
         ?client_id=2069998766651759
         &client_secret=1922b0226f3723e51658253c76cc036d
-        &redirect_uri=http://localhost:3030
+        &redirect_uri=https://localhost:3030/
         &grant_type=${fbToken}`).then( success => {
 
             console.log("success: ", succees);
