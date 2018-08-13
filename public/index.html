@@ -1,56 +1,71 @@
+<body>
+  <p class="center-text">
+    <br/>
+    <button id="login">Login With GitHub</button>
+  </p>
+
+</body>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/core-js/2.1.4/core.min.js"></script>
 <script src="//unpkg.com/@feathersjs/client@^3.0.0/dist/feathers.js"></script>
 <script src="//unpkg.com/socket.io-client@1.7.3/dist/socket.io.js"></script>
+<!-- <script src="//unpkg.com/feathers-client@^1.8.0/dist/feathers.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script> -->
 <script>
   // Socket.io is exposed as the `io` global.
-  var socket = io('http://localhost:3030');
+  var socket = io('https://localhost:3030');
   // @feathersjs/client is exposed as the `feathers` global.
   var app = feathers();
 
-    const options = {
-      header: 'Authorization', // the default authorization header for REST
-      prefix: '', // if set will add a prefix to the header value. for example if prefix was 'JWT' then the header would be 'Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOi...'
-      path: '/authentication', // the server-side authentication service path
-      jwtStrategy: 'jwt', // the name of the JWT authentication strategy 
-      entity: 'user', // the entity you are authenticating (ie. a users)
-      service: 'users', // the service to look up the entity
-      cookie: 'feathers-jwt', // the name of the cookie to parse the JWT from when cookies are enabled server side
-      storageKey: 'feathers-jwt', // the key to store the accessToken in localstorage or AsyncStorage on React Native
-      storage: undefined // Passing a WebStorage-compatible object to enable automatic storage on the client.
-    }
+  const options = {
+    // header: 'Authorization', // the default authorization header for REST
+    // prefix: '', // if set will add a prefix to the header value. for example if prefix was 'JWT' then the header would be 'Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOi...'
+    // path: '/authentication', // the server-side authentication service path
+    // jwtStrategy: 'jwt', // the name of the JWT authentication strategy 
+    // entity: 'user', // the entity you are authenticating (ie. a users)
+    // service: 'users', // the service to look up the entity
+    cookie: 'feathers-jwt', // the name of the cookie to parse the JWT from when cookies are enabled server side
+    // storageKey: 'feathers-jwt', // the key to store the accessToken in localstorage or AsyncStorage on React Native
+    // storage: undefined // Passing a WebStorage-compatible object to enable automatic storage on the client.
+  }
 
+  // app.configure(feathers.socketio(socket));
   app.configure(feathers.socketio(socket));
   app.configure(feathers.authentication());
 
-  app.authenticate({
-    "strategy": "local",
-    "email": "tupm@example.com",
-    "password": "secret"
-  }).then(data => {
-    console.log("authen ok: ", data);
-
-    messageService.find({
-      query: { $skip: 1 }
-    }).then(data => {
+  document.querySelector("#login").addEventListener('click', () => {
+    FB.login(data => {
       console.log("data: ", data);
+      if (data.status === 'connected') {
+        app.authenticate({
+          "strategy": "social-token",
+          "socialToken": data.accessToken
+        }).then(data => {
+          console.log("ok; ", data);
+        }, error => {
+          console.log("error: ", error);;
+        })
+      }
     })
-
-    // messageService.create({
-    //   text: 'Message from client'
-    // })
   })
 
-  const messageService = app.service('adidas')
 
-  messageService.on('created', message => console.log('Created a message', message));
+  window.fbAsyncInit = function () {
+    FB.init({
+      appId: 2069998766651759,
+      cookie: true,
+      xfbml: true,
+      version: 'v3.1'
+    });
 
+    FB.AppEvents.logPageView();
 
-  // feathers.errors is an object with all of the custom error types.
+  };
+
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) { return; }
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
 </script>
-
-<body>
-  <p class="center-text"><br/>
-    <a href="/auth/facebook">Login With GitHub</a>
-  </p>
-  
-</body>

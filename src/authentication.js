@@ -14,13 +14,22 @@ module.exports = function (app) {
 
   app.passport.use('social-token', new CustomStrategy( (request, callback) => {
 
+    console.log("call: ", request.body);
+
     try {
       // console.log("req: ", request);
-      const {email, socialId, socialToken} = request.body;
+      const { facebookToken } = request.body;
 
-      verifyFacebook("EAAdapyUrZBW8BAE5peEKvOhK2dbqLJKO989sLfwFbQnxmIMCllr1kZA77z2bZArfjn1C7ocWaD7CZBHDH4V1oaCa4N8mZBFDXdGlhuMLpra2ZBsYH2laID4z7gPHaZAXfVNG4O6ZAJ97WGA2hkTcYkZAOmZBGEYAJFWRD7LZALi3XZBVrZBNBS6PnrNzSAaTbYnAH3eQPtb0I7zc6TQZDZD").then(succes => {}, error => {})
+      // verifyFacebook(facebookToken).then(succes => {}, error => {})
+      // callback(true);
+      app.service('users').find({query:{id:1}}).then(data => {
+        console.log("data: ", data)
+        callback(null, data.data[0]);
+      }, error => {
+        console.log("error: ", error);
+      })
     } catch( error) {
-      console.log("catch: ");
+      console.log("catch: ", error);
     }
   }))
 

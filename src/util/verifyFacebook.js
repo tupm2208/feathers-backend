@@ -14,7 +14,6 @@ module.exports = (fbToken) => {
             console.log("success: ", succees);
             resolve(succees);
         }, error => {
-            console.log("error: ", error);
             reject(error);
         })
 

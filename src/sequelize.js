@@ -40,7 +40,10 @@ const operatorsAliases = {
 
 module.exports = function (app) {
   const connectionString = app.get('mysql');
-  const sequelize = new Sequelize('adidas', 'root', 'hamphuong3003', {
+  const sequelize = new Sequelize(
+    // 'adidas', 'root', 'hamphuong3003', 
+    connectionString,
+    {
     // host: 'bi19jm33m-mysql.services.clever-cloud.com',
     dialect: 'mysql',
     logging: true,
