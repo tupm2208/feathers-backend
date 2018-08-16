@@ -15,7 +15,7 @@
       "social-token"
     ],
     "path": "/authentication",
-    "service": "users",
+    "service": "user",
     "jwt": {
       "header": {
         "typ": "access"
@@ -61,5 +61,6 @@
       "usernameField": "email",
       "passwordField": "password"
     }
-  }
+  },
+  "nedb": "../data"
 }

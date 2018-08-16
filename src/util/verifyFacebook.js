@@ -1,22 +1,23 @@
 const axios = require('axios');
 const errors = require('feathers-errors');
+const crypto = require('crypto');
 
 module.exports = (fbToken) => {
 
     return new Promise( (resolve, reject) => {
 
-        axios.get(`https://graph.facebook.com/oauth/access_token
-        ?client_id=2069998766651759
-        &client_secret=1922b0226f3723e51658253c76cc036d
-        &redirect_uri=https://localhost:3030/
-        &grant_type=${fbToken}`).then( success => {
+      const appSecretProof = crypto.createHmac('sha256', '1922b0226f3723e51658253c76cc036d').update(fbToken).digest('hex');
 
-            console.log("success: ", succees);
-            resolve(succees);
+        axios.get(`https://graph.facebook.com/me?fields=id,name,email,address,location,picture&access_token=${fbToken}`).then( success => {
+
+            resolve(success.data);
         }, error => {
+
             reject(error);
         })
 
+        // ?client_id=2069998766651759
+        // &client_secret=1922b0226f3723e51658253c76cc036d
         // socialAuth = socialAuth.data
 
         // console.log("socialAuth: ", socialAuth);

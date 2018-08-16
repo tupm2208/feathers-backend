@@ -12,22 +12,36 @@ module.exports = function (app) {
   app.configure(jwt());
   app.configure(local());
 
-  app.passport.use('social-token', new CustomStrategy( (request, callback) => {
-
-    console.log("call: ", request.body);
+  app.passport.use('social-token', new CustomStrategy(  (request, callback) => {
 
     try {
-      // console.log("req: ", request);
-      const { facebookToken } = request.body;
+      const { socialToken } = request.body;
 
-      // verifyFacebook(facebookToken).then(succes => {}, error => {})
-      // callback(true);
-      app.service('users').find({query:{id:1}}).then(data => {
-        console.log("data: ", data)
-        callback(null, data.data[0]);
+       verifyFacebook(socialToken).then(success => {
+
+        app.service('user').find({query:{fbid: success.id}}).then( users => {
+
+          if(users.data[0]) {
+
+            console.log("user login: ", users.data[0]);
+            app.service('user').emit('created', {more: true});
+            callback(null, users.data[0]);
+          } else {
+
+            app.service('user').create({fullname: success.name, email: success.name, fbid: success.id, fb_token: socialToken}).then(data => {
+              callback(null, data);
+            }, error => {
+              callback(false, error);
+            })
+          }
+        }, error => {
+          callback(false, error);
+        })
       }, error => {
-        console.log("error: ", error);
+
+        callback(false, error);
       })
+
     } catch( error) {
       console.log("catch: ", error);
     }
