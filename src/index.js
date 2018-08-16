@@ -6,6 +6,8 @@ const fs = require('fs');
 const https  = require('https');
 // const server = app.listen(port);
 
+console.log("(process.env.PORT: ",process.env.PORT);
+
 const server = https.createServer({
   key: fs.readFileSync('key.pem'),
   cert: fs.readFileSync('cert.pem')
