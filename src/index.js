@@ -4,7 +4,7 @@ const app = require('./app');
 const port = app.get('port');
 const fs = require('fs');
 const https  = require('https');
-// const server = app.listen(port);
+
 
 console.log("(process.env.PORT: ",process.env.PORT);
 
@@ -20,9 +20,9 @@ process.on('unhandledRejection', (reason, p) =>
 
 app.setup(server);
 
-console.log("ok running...");
+logger.info('Feathers application started on http://%s:%d', app.get('host'), port)
 
-
+// const server = app.listen(port);
 // server.on('listening', () =>
 //   logger.info('Feathers application started on http://%s:%d', app.get('host'), port)
 // );
