@@ -5,7 +5,6 @@ class Service {
   }
 
   setup(app) {
-    console.log("setup running: ", app);
     this.app = app;
   }
 
