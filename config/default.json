@@ -1,6 +1,6 @@
 {
   "host": "https://app-a15a6695-e7be-4122-99b7-3b18cd2dd87b.cleverapps.io/",
-  "port": 3030,
+  "port": 8080,
   "public": "../public/",
   "paginate": {
     "default": 10,
