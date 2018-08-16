@@ -1,5 +1,5 @@
 {
-  "host": "https://app-a15a6695-e7be-4122-99b7-3b18cd2dd87b.cleverapps.io/",
+  "host": "localhost",
   "port": 8080,
   "public": "../public/",
   "paginate": {
