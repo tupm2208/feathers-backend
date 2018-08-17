@@ -45,7 +45,7 @@ describe('Feathers application tests', () => {
         url: getUrl('path/to/nowhere'),
         json: true
       }).catch(res => {
-        assert.equal(res.statusCode, 404);
+        assert.equal(res.statusCode, 403);
         assert.equal(res.error.code, 404);
         assert.equal(res.error.message, 'Page not found');
         assert.equal(res.error.name, 'NotFound');

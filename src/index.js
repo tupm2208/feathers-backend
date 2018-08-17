@@ -13,9 +13,9 @@ const fs = require('fs');
 //   cert: fs.readFileSync('cert.pem')
 // }, app).listen(process.env.PORT || port);
 
-// process.on('unhandledRejection', (reason, p) =>
-//   logger.error('Unhandled Rejection at: Promise ', p, reason)
-// );
+process.on('unhandledRejection', (reason, p) =>
+  logger.error('Unhandled Rejection at: Promise ', p, reason)
+);
 
 
 // app.setup(server);

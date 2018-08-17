@@ -11,7 +11,7 @@ class Service {
   find (params) {
     return new Promise((resolve, reject) => {
       console.log("params: ", params);
-      let VERIFY_TOKEN = "bomaylaisomayquacoe"
+      let VERIFY_TOKEN = "bomaylaisomayquaco"
 
       // Parse the query params
       if(!params || !params.query) {
@@ -34,10 +34,10 @@ class Service {
 
         } else {
           // Responds with '403 Forbidden' if verify tokens do not match
-          reject(false);
+          reject({});
         }
       } else {
-        reject(false);
+        reject({});
       }
     });
   }
