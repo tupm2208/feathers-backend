@@ -57,7 +57,7 @@ module.exports = function(app) {
 
     console.log("data ct: ", data);
     return [
-      // app.channel('authenticated'),
+      app.channel('authenticated'),
       app.channel('anonymous')
     ]
   })
