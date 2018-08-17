@@ -2,7 +2,6 @@ const errors = require("@feathersjs/errors");
 
 function emitingEvent(app, data) {
 
-  app.result.vailua = "vai lua luon";
   this.app.service('user').emit('created', app.result);
   data();
 }

@@ -10,7 +10,6 @@ class Service {
 
   find (params) {
     return new Promise((resolve, reject) => {
-      console.log("params: ", params);
       let VERIFY_TOKEN = "bomaylaisomayquaco"
 
       // Parse the query params
@@ -29,7 +28,7 @@ class Service {
         if (mode === 'subscribe' && token === VERIFY_TOKEN) {
 
           // Responds with the challenge token from the request
-          console.log('WEBHOOK_VERIFIED: ', challenge);
+          console.log('WEBHOOK_VERIFIED');
           resolve( Number(challenge));
 
         } else {
@@ -54,7 +53,6 @@ class Service {
     // }
 
     return new Promise( (resolve, reject) => {
-      console.log("params: ", data, params);
       resolve(data);
     });
   }
