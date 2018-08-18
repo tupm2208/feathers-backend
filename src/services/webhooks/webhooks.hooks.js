@@ -2,7 +2,7 @@ const errors = require("@feathersjs/errors");
 
 function emitingEvent(app, data) {
 
-  this.app.service('user').emit('created', app.result);
+  this.app.service('users').emit('created', app.result);
   data();
 }
 

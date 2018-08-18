@@ -19,16 +19,22 @@ module.exports = function (app) {
 
        verifyFacebook(socialToken).then(success => {
 
-        app.service('user').find({query:{fbid: success.id}}).then( users => {
+        app.service('users').find({query:{fbid: success.id}}).then( users => {
 
           if(users.data[0]) {
 
             console.log("user login: ", users.data[0]);
-            app.service('user').emit('created', {more: true});
+            app.service('users').emit('created', {more: true});
             callback(null, users.data[0]);
           } else {
 
-            app.service('user').create({fullname: success.name, email: success.name, fbid: success.id, fb_token: socialToken}).then(data => {
+            app.service('users').create({
+              // fullname: success.name, email: success.name, fbid: success.id, fb_token: socialToken
+              name: success.name,
+              email: success.email,
+              fbid: success.id,
+              fbtoken: socialToken
+            }).then(data => {
               callback(null, data);
             }, error => {
               callback(false, error);

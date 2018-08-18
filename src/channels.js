@@ -53,7 +53,7 @@ module.exports = function(app) {
   //   return app.channel('authenticated');
   // });
 
-  app.service('user').publish((data, context) => {
+  app.service('users').publish((data, context) => {
 
     console.log("data ct: ", data);
     return [
