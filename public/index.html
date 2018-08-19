@@ -2,6 +2,8 @@
   <p class="center-text">
     <br/>
     <button id="login">Login With GitHub</button>
+    <br/>
+    <button id="normal-login">Login</button>
   </p>
 
 </body>
@@ -12,8 +14,8 @@
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script> -->
 <script>
   // Socket.io is exposed as the `io` global.
-  // var socket = io('http://localhost:3030');
-  var socket = io('https://thawing-forest-91390.herokuapp.com/');
+  var socket = io('http://localhost:3030');
+  // var socket = io('https://thawing-forest-91390.herokuapp.com/');
   // @feathersjs/client is exposed as the `feathers` global.
   var app = feathers();
 
@@ -49,6 +51,19 @@
     },{scope: "email,manage_pages,pages_show_list,publish_pages,read_page_mailboxes,pages_messaging,public_profile"})
   })
 
+  document.querySelector("#normal-login").addEventListener('click', () => {
+    app.authenticate({
+      strategy: 'local',
+      email: 'tu.phamminh.2207@gmail.com',
+      password: "anhyeuem"
+    }).then( loginOk => {
+
+      console.log("login ok: ", loginOk);
+      app.service('users').find().then( result => {
+        console.log("user: ", result);
+      })
+    })
+  })
   app.service('user').on('created', data => {
     console.log("created user: ", data);
   })

@@ -36,13 +36,13 @@ module.exports = function (app) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    fbid: {
+    fbId: {
       type: DataTypes.STRING
     },
-    fbtoken: {
+    fbIoken: {
       type: DataTypes.STRING
     },
-    exchangeodds: {
+    exchangeOdds: {
       type: DataTypes.INTEGER,
       defaultValue: 0
     }
@@ -56,6 +56,7 @@ module.exports = function (app) {
 
   // eslint-disable-next-line no-unused-vars
   users.associate = function (models) {
+    console.log("models: ", models);
     // Define associations here
     // See http://docs.sequelizejs.com/en/latest/docs/associations/
   };
