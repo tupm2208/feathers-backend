@@ -55,7 +55,7 @@ module.exports = function(app) {
 
   app.service('users').publish((data, context) => {
 
-    console.log("data ct: ", data);
+    // console.log("data ct: ", data);
     return [
       app.channel('authenticated'),
       app.channel('anonymous')

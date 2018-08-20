@@ -1,10 +1,10 @@
 <body>
-  <p class="center-text">
-    <br/>
-    <button id="login">Login With GitHub</button>
-    <br/>
-    <button id="normal-login">Login</button>
-  </p>
+    <p class="center-text">
+        <br/>
+        <button id="login">Login With GitHub</button>
+        <br/>
+        <button id="normal-login">Login</button>
+    </p>
 
 </body>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/core-js/2.1.4/core.min.js"></script>
@@ -12,84 +12,105 @@
 <script src="//unpkg.com/socket.io-client@1.7.3/dist/socket.io.js"></script>
 <!-- <script src="//unpkg.com/feathers-client@^1.8.0/dist/feathers.js"></script> -->
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script> -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 <script>
-  // Socket.io is exposed as the `io` global.
-  var socket = io('http://localhost:3030');
-  // var socket = io('https://thawing-forest-91390.herokuapp.com/');
-  // @feathersjs/client is exposed as the `feathers` global.
-  var app = feathers();
+    // Socket.io is exposed as the `io` global.
+    const urlBase = "http://localhost:3030";
+    var socket = io(urlBase);
+    // var socket = io('https://thawing-forest-91390.herokuapp.com/');
+    // @feathersjs/client is exposed as the `feathers` global.
+    var app = feathers();
 
-  const options = {
-    // header: 'Authorization', // the default authorization header for REST
-    // prefix: '', // if set will add a prefix to the header value. for example if prefix was 'JWT' then the header would be 'Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOi...'
-    // path: '/authentication', // the server-side authentication service path
-    // jwtStrategy: 'jwt', // the name of the JWT authentication strategy
-    // entity: 'user', // the entity you are authenticating (ie. a users)
-    // service: 'users', // the service to look up the entity
-    cookie: 'feathers-jwt', // the name of the cookie to parse the JWT from when cookies are enabled server side
-    // storageKey: 'feathers-jwt', // the key to store the accessToken in localstorage or AsyncStorage on React Native
-    // storage: undefined // Passing a WebStorage-compatible object to enable automatic storage on the client.
-  }
+    const options = {
+        // header: 'Authorization', // the default authorization header for REST
+        // prefix: '', // if set will add a prefix to the header value. for example if prefix was 'JWT' then the header would be 'Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOi...'
+        // path: '/authentication', // the server-side authentication service path
+        // jwtStrategy: 'jwt', // the name of the JWT authentication strategy
+        // entity: 'user', // the entity you are authenticating (ie. a users)
+        // service: 'users', // the service to look up the entity
+        cookie: 'feathers-jwt', // the name of the cookie to parse the JWT from when cookies are enabled server side
+        // storageKey: 'feathers-jwt', // the key to store the accessToken in localstorage or AsyncStorage on React Native
+        // storage: undefined // Passing a WebStorage-compatible object to enable automatic storage on the client.
+    }
 
-  // app.configure(feathers.socketio(socket));
-  app.configure(feathers.socketio(socket));
-  app.configure(feathers.authentication());
+    // app.configure(feathers.socketio(socket));
+    app.configure(feathers.socketio(socket));
+    app.configure(feathers.authentication());
 
-  document.querySelector("#login").addEventListener('click', () => {
-    FB.login(data => {
-      console.log("data from fb: ", data);
-      if (data.status === 'connected') {
-        app.authenticate({
-          "strategy": "social-token",
-          "socialToken": data.authResponse.accessToken
-        }).then(data => {
-          console.log("ok; ", data);
-        }, error => {
-          console.log("error: ", error);;
-        })
-      }
-    },{scope: "email,manage_pages,pages_show_list,publish_pages,read_page_mailboxes,pages_messaging,public_profile"})
-  })
-
-  document.querySelector("#normal-login").addEventListener('click', () => {
-    app.authenticate({
-      strategy: 'local',
-      email: 'tu.phamminh.2207@gmail.com',
-      password: "anhyeuem"
-    }).then( loginOk => {
-
-      console.log("login ok: ", loginOk);
-      app.service('users').find().then( result => {
-        console.log("user: ", result);
-      })
+    document.querySelector("#login").addEventListener('click', () => {
+        FB.login(data => {
+            console.log("data from fb: ", data);
+            if (data.status === 'connected') {
+                app.authenticate({
+                    "strategy": "social-token",
+                    "socialToken": data.authResponse.accessToken
+                }).then(data => {
+                    console.log("ok; ", data);
+                }, error => {
+                    console.log("error: ", error);;
+                })
+            }
+        }, { scope: "email,manage_pages,pages_show_list,publish_pages,read_page_mailboxes,pages_messaging,public_profile" })
     })
-  })
-  app.service('user').on('created', data => {
-    console.log("created user: ", data);
-  })
 
-  app.service('webhooks').on('created', data => {
-    console.log("created message: ", data);
-  })
+    document.querySelector("#normal-login").addEventListener('click', () => {
+        app.authenticate({
+            strategy: 'local',
+            email: 'tupm@kaopiz.com',
+            password: "anhyeuem"
+        }).then(loginOk => {
+
+            console.log("login ok: ", loginOk);
+            // app.service('users').find().then(result => {
+            //     console.log("user: ", result);
+            // })
+            app.service('users').patch({
+                data: {
+                    "email": "tupm@kaopiz.com",
+                    "password": "anhyeuem",
+                    "name": "Ngô Trung Nghĩa",
+                    "address": "Xuân Ninh - Xuân Trường - Nam Định",
+                    "role": "client",
+                    "fbId": null,
+                    "fbIoken": null,
+                    "exchangeOdds": 1
+                }
+            }).then(data => {
+                console.log("patch ok: ", data);
+            })
+
+            app.service('bills').find().then(data => {
+                console.log("get bills: ", data);
+            })
+        })
+    })
+    app.service('user').on('created', data => {
+        console.log("created user: ", data);
+    })
+
+    app.service('webhooks').on('created', data => {
+        console.log("created message: ", data);
+    })
 
 
-  window.fbAsyncInit = function () {
-    FB.init({
-      appId: 2069998766651759,
-      cookie: true,
-      xfbml: true,
-      version: 'v3.1'
-    });
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: 2069998766651759,
+            cookie: true,
+            xfbml: true,
+            version: 'v3.1'
+        });
 
-    FB.AppEvents.logPageView();
+        FB.AppEvents.logPageView();
 
-  };
+    };
 
-  (function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) { return; }
-    js = d.createElement(s); js.id = id;
-    js.src = "https://connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
 </script>
