@@ -42,15 +42,15 @@ module.exports = function (options = {}) {
             throw new errors.MethodNotAllowed(`The 'restrictToOwner' hook should only be used on the 'get', 'update', 'patch' and 'remove' service methods.`);
         }
 
-        console.log("running...");
+        console.log("running...: ", hook.params.users, hook.params.user);
 
-        if (!hook.params.user) {
+        if (!hook.params.users) {
             // TODO (EK): Add a debugger call to remind the dev to check their hook chain
             // as they probably don't have the right hooks in the right order.
             throw new errors.NotAuthenticated(`The current user is missing. You must not be authenticated.`);
         }
 
-        const id = get(hook.params.user, options.idField);
+        const id = get(hook.params.users, options.idField);
 
         if (id === undefined) {
             throw new Error(`'${options.idField} is missing from current user.'`);
