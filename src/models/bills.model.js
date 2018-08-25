@@ -68,6 +68,14 @@ module.exports = function (app) {
       foreignKey: 'billId',
       targetKey: 'id'
     })
+
+    bills.belongsTo(models.reservations, {
+        foreignKey: 'reservationId'
+    })
+
+    bills.belongsTo(models.users, {
+        foreignKey: 'userId'
+    })
   };
 
   return bills;
