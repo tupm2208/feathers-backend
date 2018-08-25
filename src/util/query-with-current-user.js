@@ -12,7 +12,7 @@ module.exports = function (options = {}) {
       throw new Error(`The 'queryWithCurrentUser' hook should only be used as a 'before' hook.`);
     }
 
-    if (!hook.params.user) {
+    if (!hook.params.users) {
       if (!hook.params.provider) {
         return hook;
       }
@@ -22,7 +22,7 @@ module.exports = function (options = {}) {
 
     options = Object.assign({}, defaults, hook.app.get('authentication'), options);
 
-    const id = get(hook.params.user, options.idField);
+    const id = get(hook.params.users, options.idField);
 
     if (id === undefined) {
       throw new Error(`Current user is missing '${options.idField}' field.`);

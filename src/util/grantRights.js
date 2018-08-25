@@ -25,7 +25,7 @@ module.exports = function (options = {}) {
             return hook;
         }
 
-        if (hook.params.connection && hook.params.connection.user && hook.params.connection.user.role === 'admin') {
+        if (hook.params.connection && hook.params.connection.users && hook.params.connection.users.role === 'admin') {
             return hook;
         }
 

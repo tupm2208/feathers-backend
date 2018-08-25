@@ -16,7 +16,8 @@
 
 <script>
     // Socket.io is exposed as the `io` global.
-    const urlBase = "https://thawing-forest-91390.herokuapp.com";
+    // const urlBase = "https://thawing-forest-91390.herokuapp.com";
+    const urlBase = "localhost:3030"
     var socket = io(urlBase);
     // var socket = io('https://thawing-forest-91390.herokuapp.com/');
     // @feathersjs/client is exposed as the `feathers` global.
@@ -65,18 +66,7 @@
             // app.service('users').find().then(result => {
             //     console.log("user: ", result);
             // })
-            app.service('users').patch(1,{
-                data: {
-                    "email": "tupm@kaopiz.com",
-                    "password": "anhyeuem",
-                    "name": "Ngô Trung Nghĩa",
-                    "address": "Xuân Ninh - Xuân Trường - Nam Định",
-                    "role": "admin",
-                    "fbId": null,
-                    "fbIoken": null,
-                    "exchangeOdds": 1
-                }
-            }).then(data => {
+            app.service('users').find({}).then(data => {
                 console.log("patch ok: ", data);
             })
 
@@ -114,3 +104,5 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
+<!-- mysql -h bjzm1q4bh-mysql.services.clever-cloud.com -P 3306 -u u82ztvqqecpdgk9x -p bjzm1q4bh -->
+<!-- rQXoA3zhxptxntt0HDx -->
