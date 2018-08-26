@@ -10,7 +10,6 @@ const defaults = {
 
 module.exports = function (options = {}) {
 
-    console.log("option: ", options);
     return function (hook) {
         if (hook.type !== 'before') {
             throw new Error(`The 'restrictToOwner' hook should only be used as a 'before' hook.`);
@@ -18,16 +17,16 @@ module.exports = function (options = {}) {
 
         options = Object.assign({}, defaults, hook.app.get('authentication'), options);
 
-        console.log("params: ", hook.params);
-
         // If it was an internal call then skip this hook
         if (!hook.params.provider) {
             return hook;
         }
+        console.log("hook: ", hook.params.connection.user)
 
-        if (hook.params.connection && hook.params.connection.users && hook.params.connection.users.role === 'admin') {
+        if (hook.params.connection && hook.params.connection.user && hook.params.connection.user.role === 'admin') {
             return hook;
         }
+
 
         if (hook.method === 'find' || hook.id === null) {
             return queryWithCurrentUser({
@@ -42,15 +41,13 @@ module.exports = function (options = {}) {
             throw new errors.MethodNotAllowed(`The 'restrictToOwner' hook should only be used on the 'get', 'update', 'patch' and 'remove' service methods.`);
         }
 
-        console.log("running...: ", hook.params.users, hook.params.user);
-
-        if (!hook.params.users) {
+        if (!hook.params.user) {
             // TODO (EK): Add a debugger call to remind the dev to check their hook chain
             // as they probably don't have the right hooks in the right order.
             throw new errors.NotAuthenticated(`The current user is missing. You must not be authenticated.`);
         }
 
-        const id = get(hook.params.users, options.idField);
+        const id = get(hook.params.user, options.idField);
 
         if (id === undefined) {
             throw new Error(`'${options.idField} is missing from current user.'`);
