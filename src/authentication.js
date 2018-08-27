@@ -32,8 +32,8 @@ module.exports = function (app) {
               // fullname: success.name, email: success.name, fbid: success.id, fb_token: socialToken
               name: success.name,
               email: success.email,
-              fbid: success.id,
-              fbtoken: socialToken
+              fbId: success.id,
+              fbToken: socialToken
             }).then(data => {
               callback(null, data);
             }, error => {

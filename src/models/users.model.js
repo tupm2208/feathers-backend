@@ -39,7 +39,7 @@ module.exports = function (app) {
     fbId: {
       type: DataTypes.STRING
     },
-    fbIoken: {
+    fbToken: {
       type: DataTypes.STRING
     },
     exchangeOdds: {
