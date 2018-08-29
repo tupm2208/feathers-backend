@@ -6,10 +6,17 @@ const {
 
 const grantRights = require('../../util/grantRights')({idField: 'id', ownerField: 'id', expandPaths: true});
 
-function setCreatedAt(data) {
+function order(context) {
 
-  data.params.query.createdAt = new Date();
-  data.params.query.updatedAt = new Date();
+    const { query = {} } = context.params;
+
+    if (!query.$sort) {
+        query.$sort = {
+            id: -1
+        }
+    }
+
+    context.params.query = query;
 }
 
 function setUpdatedAt(data) {
@@ -35,7 +42,7 @@ function setRole(hook) {
 module.exports = {
   before: {
     all: [],
-    find: [ authenticate('jwt'), grantRights ],
+    find: [ authenticate('jwt'), grantRights, order ],
     get: [ authenticate('jwt'), grantRights ],
     create: [ hashPassword(), setRole ],
     update: [ hashPassword(),  authenticate('jwt'), grantRights, setRole ],
