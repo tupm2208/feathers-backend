@@ -2,9 +2,10 @@ const { authenticate } = require('@feathersjs/authentication').hooks;
 
 function associate(hook) {
 	if (hook.params.query.include) {
-		const AssociatedModel = hook.app.services.billdetail.Model;
+        const AssociatedModel = hook.app.services.billdetail.Model;
+        const UserModel = hook.app.services.users.Model;
 		hook.params.sequelize = {
-			include: [{ model: AssociatedModel, as: 'billdetail' }]
+			include: [{ model: AssociatedModel, as: 'billdetail' }, {model: UserModel, as: 'user'}]
 		};
 	}
 	return Promise.resolve(hook);
