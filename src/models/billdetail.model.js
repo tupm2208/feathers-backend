@@ -13,7 +13,8 @@ module.exports = function (app) {
     },
     productID: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      primaryKey: true
     },
     quantity: {
       type: DataTypes.INTEGER,
