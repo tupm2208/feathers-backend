@@ -7,7 +7,8 @@ function associate(hook) {
 		hook.params.sequelize = {
 			include: [{ model: AssociatedModel, as: 'billdetail' }, {model: UserModel, as: 'user'}]
 		};
-	}
+    }
+    delete hook.params.query.include;
 	return Promise.resolve(hook);
 }
 
