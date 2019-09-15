@@ -31,18 +31,31 @@ module.exports = function (app) {
       allowNull: true,
       defaultValue: 0
     },
+    exchangeRate: {
+      type: DataTypes.DECIMAL,
+      allowNull: true,
+      defaultValue: 0
+    },
     shipFee: {
       type: DataTypes.DECIMAL,
       allowNull: true,
       defaultValue: 0
     },
     surcharge: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.STRING,
       allowNull: true,
       defaultValue: 0
     },
     exchangeRateId: {
       type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    tradeDiscount: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    brand: {
+      type: DataTypes.STRING,
       allowNull: false
     },
     note: {

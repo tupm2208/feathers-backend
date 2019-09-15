@@ -5,10 +5,14 @@ function associate(hook) {
         const AssociatedModel = hook.app.services.billdetail.Model;
         const UserModel = hook.app.services.users.Model;
 		hook.params.sequelize = {
-            include: [{ model: AssociatedModel, as: 'billdetail',required: false }, {model: UserModel, as: 'user', attributes: ['name', 'role','phone']}],
+            include: [{ model: AssociatedModel, as: 'billdetail',required: false }, {model: UserModel, as: 'user', attributes: ['id', 'name', 'role','phone', 'exchangeOdds']}],
             raw: false
 		};
-    }
+	}
+	console.log("query: ", hook.params.query)
+	if(hook.params.query.reservationId == '' || hook.params.query.reservationId == 'null') {
+		hook.params.query.reservationId = null
+	}
     delete hook.params.query.include;
 	return Promise.resolve(hook);
 }

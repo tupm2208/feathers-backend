@@ -22,6 +22,10 @@ module.exports = function (app) {
             type: DataTypes.STRING,
             allowNull: false
         },
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         deposit: {
             type: DataTypes.DECIMAL,
             allowNull: true

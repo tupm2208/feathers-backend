@@ -30,7 +30,8 @@ function setRole(hook) {
         return hook;
     }
 
-    if(hook.params.connection && hook.params.connection.user && hook.params.connection.user.role === 'admin') {
+    if(hook.params && hook.params.user && hook.params.user.role === 'admin') {
+        console.log("setrole: admin", hook.data)
         return hook;
     }
 

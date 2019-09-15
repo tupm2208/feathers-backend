@@ -11,7 +11,7 @@ module.exports = function (app) {
       allowNull: false,
       primaryKey: true
     },
-    productID: {
+    productId: {
       type: DataTypes.STRING,
       allowNull: false,
       primaryKey: true
@@ -24,22 +24,19 @@ module.exports = function (app) {
       type: DataTypes.DECIMAL,
       allowNull: false
     },
-    discountRate: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    exchangeRate: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
     keepBox: {
       type: DataTypes.BOOLEAN,
       allowNull: false
     },
-    brand: {
+    link: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
+    },
+    weight: {
+      type: DataTypes.DECIMAL,
+      allowNull: true
     }
+
   }, {
     hooks: {
       beforeCount(options) {

@@ -21,9 +21,8 @@ module.exports = function (options = {}) {
         if (!hook.params.provider) {
             return hook;
         }
-        console.log("hook: ", hook.params.connection.user)
 
-        if (hook.params.connection && hook.params.connection.user && hook.params.connection.user.role === 'admin') {
+        if (hook.params && hook.params.user && hook.params.user.role === 'admin') {
             return hook;
         }
 
