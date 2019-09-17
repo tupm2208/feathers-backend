@@ -17,6 +17,17 @@ function associate(hook) {
 	return Promise.resolve(hook);
 }
 
+function validatePatch(hook) {
+	if(hook.data.reservationId == '') {
+		hook.data.reservationId = null
+	}
+
+	if(!hook.data.receiveDate) {
+		delete hook.data.receiveDate
+	}
+	return Promise.resolve(hook);
+}
+
 module.exports = {
 	before: {
 		all: [ authenticate('jwt')],
@@ -24,7 +35,7 @@ module.exports = {
 		get: [],
 		create: [],
 		update: [],
-		patch: [],
+		patch: [validatePatch],
 		remove: []
 	},
 
