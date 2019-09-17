@@ -9,11 +9,14 @@ module.exports = function (app) {
         reservationId: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            primaryKey: true
+            primaryKey: true,
+            unique: false
         },
         productId: {
             type: DataTypes.STRING,
-            allowNull: false
+            primaryKey: true,
+            allowNull: false,
+            unique: false
         },
         quantity: {
             type: DataTypes.INTEGER,

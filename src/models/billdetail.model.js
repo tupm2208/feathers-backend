@@ -9,12 +9,14 @@ module.exports = function (app) {
     billId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      unique: false
     },
     productId: {
       type: DataTypes.STRING,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      unique: false
     },
     quantity: {
       type: DataTypes.INTEGER,
@@ -34,7 +36,8 @@ module.exports = function (app) {
     },
     weight: {
       type: DataTypes.DECIMAL,
-      allowNull: true
+      allowNull: true,
+      defaultValue: 0
     }
 
   }, {

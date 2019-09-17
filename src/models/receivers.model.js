@@ -10,10 +10,6 @@ module.exports = function (app) {
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        quantity: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
         status: {
             type: DataTypes.INTEGER,
             allowNull: false
@@ -40,7 +36,7 @@ module.exports = function (app) {
         },
         arrivedDate: {
             type: DataTypes.DATE,
-            allowNull: false
+            allowNull: true
         },
         createdDate: {
             type: DataTypes.DATE,
@@ -48,11 +44,11 @@ module.exports = function (app) {
         },
         note: {
             type: DataTypes.TEXT,
-            allowNull: false
+            allowNull: true
         },
         edit: {
             type: DataTypes.TEXT,
-            allowNull: false
+            allowNull: true
         }
     }, {
             hooks: {

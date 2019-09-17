@@ -9,23 +9,29 @@ module.exports = function (app) {
     receiverId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      unique: false
     },
-    reservationID: {
+    reservationId: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      primaryKey: true,
+      unique: false
     },
     quantity: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      defaultValue: 0
     },
     weight: {
       type: DataTypes.FLOAT,
-      allowNull: true
+      allowNull: true,
+      defaultValue: 0
     },
     keepBox: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      defaultValue: 0
     }
   }, {
     hooks: {

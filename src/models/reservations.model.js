@@ -16,7 +16,8 @@ module.exports = function (app) {
         },
         yenAmount: {
             type: DataTypes.DECIMAL,
-            allowNull: true
+            allowNull: true,
+            defaultValue: 0
         },
         account: {
             type: DataTypes.STRING,
@@ -28,11 +29,13 @@ module.exports = function (app) {
         },
         deposit: {
             type: DataTypes.DECIMAL,
-            allowNull: true
+            allowNull: true,
+            defaultValue: 0
         },
         exchangeRate: {
             type: DataTypes.FLOAT,
-            allowNull: false
+            allowNull: false,
+            defaultValue: 0
         },
         status: {
             type: DataTypes.INTEGER,

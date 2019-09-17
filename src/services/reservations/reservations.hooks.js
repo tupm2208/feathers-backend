@@ -12,8 +12,20 @@ function associate(hook) {
 	console.log("query: ", hook.params.query)
 	if(hook.params.query.reservationId == '' || hook.params.query.reservationId == 'null') {
 		hook.params.query.reservationId = null
-	}
+  }
     delete hook.params.query.include;
+	return Promise.resolve(hook);
+}
+
+function validatePatch(hook) {
+	if(hook.data.receiverId == '') {
+		hook.data.receiverId = null
+	}
+
+	if(!hook.data.finishedDate) {
+		delete hook.data.finishedDate
+  }
+
 	return Promise.resolve(hook);
 }
 
@@ -24,7 +36,7 @@ module.exports = {
     get: [],
     create: [],
     update: [],
-    patch: [],
+    patch: [validatePatch],
     remove: []
   },
 
