@@ -1,5 +1,5 @@
 {
   "host": "0.0.0.0",
   "port": "PORT",
-  "mysql": "mysql -h bnpkhoetrxf9nwaxwt8h-mysql.services.clever-cloud.com -P 3306 -u umrsehjhldj1opx8 -p bnpkhoetrxf9nwaxwt8h"
+  "mysql": "mysql://umrsehjhldj1opx8:n5SBhfTM5uJWbyjvX6Iz@bnpkhoetrxf9nwaxwt8h-mysql.services.clever-cloud.com:3306/bnpkhoetrxf9nwaxwt8h"
 }
