@@ -5,7 +5,8 @@
   "homepage": "",
   "main": "src",
   "engines": {
-    "node": "10.16.3"
+    "node": "10.16.3",
+    "npm": "6.9.0"
   },
   "keywords": [
     "feathers"
