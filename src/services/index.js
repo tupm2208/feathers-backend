@@ -8,6 +8,7 @@ const reservationdetail = require('./reservationdetail/reservationdetail.service
 const receivers = require('./receivers/receivers.service.js');
 const receiverdetail = require('./receiverdetail/receiverdetail.service.js');
 const exchanges = require('./exchanges/exchanges.service.js');
+const products = require('./products/products.service.js');
 // eslint-disable-next-line no-unused-vars
 module.exports = function (app) {
   app.configure(users);
@@ -20,4 +21,5 @@ module.exports = function (app) {
   app.configure(receivers);
   app.configure(receiverdetail);
   app.configure(exchanges);
+  app.configure(products);
 };
