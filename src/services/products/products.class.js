@@ -22,7 +22,6 @@ exports.Products = class Products {
         data.status = false
         data.message = 'product not found!'
       });
-      console.log('data: ', data)
     return data
   }
 
