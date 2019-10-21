@@ -49,10 +49,6 @@ module.exports = function (app) {
             type: DataTypes.INTEGER,
             allowNull: true
         },
-        edit: {
-            type: DataTypes.TEXT,
-            allowNull: true
-        },
         brand: {
             type: DataTypes.STRING,
             allowNull: false

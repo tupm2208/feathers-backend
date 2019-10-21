@@ -46,14 +46,6 @@ module.exports = function (app) {
       allowNull: true,
       defaultValue: 0
     },
-    exchangeRateId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    tradeDiscount: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
     brand: {
       type: DataTypes.STRING,
       allowNull: false
@@ -62,9 +54,25 @@ module.exports = function (app) {
       type: DataTypes.TEXT,
       allowNull: true
     },
-    isWaiting: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false
+    weight: {
+      type: DataTypes.DECIMAL,
+      allowNull: true,
+      defaultValue: 0
+    },
+    unitPrice: {
+      type: DataTypes.DECIMAL,
+      allowNull: true,
+      defaultValue: 0
+    },
+    billName: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: ''
+    },
+    total: {
+      type: DataTypes.DECIMAL,
+      allowNull: true,
+      defaultValue: 0
     }
   }, {
     hooks: {

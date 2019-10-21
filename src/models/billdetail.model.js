@@ -28,18 +28,28 @@ module.exports = function (app) {
     },
     keepBox: {
       type: DataTypes.BOOLEAN,
-      allowNull: false
+      allowNull: false,
+      defaultValue: true
     },
     link: {
       type: DataTypes.STRING,
       allowNull: true
     },
-    weight: {
+    code: {
+      type: DataTypes.DECIMAL,
+      allowNull: true,
+      defaultValue: 0
+    },
+    webFee: {
+      type: DataTypes.DECIMAL,
+      allowNull: true,
+      defaultValue: 0
+    },
+    afterCodePrice: {
       type: DataTypes.DECIMAL,
       allowNull: true,
       defaultValue: 0
     }
-
   }, {
     hooks: {
       beforeCount(options) {
