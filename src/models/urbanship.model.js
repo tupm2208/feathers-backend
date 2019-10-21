@@ -5,33 +5,32 @@ const DataTypes = Sequelize.DataTypes;
 
 module.exports = function (app) {
   const sequelizeClient = app.get('sequelizeClient');
-  const receiverdetail = sequelizeClient.define('receiverdetail', {
-    receiverId: {
+  const urbanship = sequelizeClient.define('urbanship', {
+    userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      unique: false
     },
-    reservationId: {
+    remainingMoney: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      unique: false
     },
-    quantity: {
+    shipFee: {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 0
     },
-    weight: {
-      type: DataTypes.FLOAT,
+    supplementalShip: {
+      type: DataTypes.INTEGER,
       allowNull: true,
       defaultValue: 0
     },
-    keepBox: {
+    reservationId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: 0
+      allowNull: false
+    },
+    note: {
+      type: DataTypes.STRING,
+      allowNull: true
     }
   }, {
     hooks: {
@@ -41,16 +40,14 @@ module.exports = function (app) {
     }
   });
 
-  receiverdetail.removeAttribute('id');
-
   // eslint-disable-next-line no-unused-vars
-  receiverdetail.associate = function (models) {
-    receiverdetail.associate = function (models) {
-        receiverdetail.belongsTo(models['receivers'],{
-          foreignKey: 'receiverId',
-        })
-      };
+  urbanship.associate = function (models) {
+    // Define associations here
+    // See http://docs.sequelizejs.com/en/latest/docs/associations/
+    urbanship.belongsTo(models.users, {
+        foreignKey: 'userId'
+    })
   };
 
-  return receiverdetail;
+  return urbanship;
 };

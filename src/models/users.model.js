@@ -25,8 +25,13 @@ module.exports = function (app) {
       allowNull: true,
       unique: true
     },
-    address: {
-      type: DataTypes.TEXT
+    generalAddress: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    },
+    detailAddress: {
+      type: DataTypes.TEXT,
+      allowNull: true
     },
     role: {
       type: DataTypes.STRING,

@@ -26,6 +26,21 @@ module.exports = function (app) {
             type: DataTypes.INTEGER,
             allowNull: false
         },
+        price: {
+            type: DataTypes.DECIMAL,
+            allowNull: true,
+            defaultValue: 0
+        },
+        code: {
+            type: DataTypes.DECIMAL,
+            allowNull: true,
+            defaultValue: 0
+        },
+        webFee: {
+            type: DataTypes.DECIMAL,
+            allowNull: true,
+            defaultValue: 0
+        }
     }, {
             hooks: {
                 beforeCount(options) {

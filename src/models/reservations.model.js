@@ -19,11 +19,7 @@ module.exports = function (app) {
             allowNull: true,
             defaultValue: 0
         },
-        account: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        name: {
+        wayBillCode: {
             type: DataTypes.STRING,
             allowNull: false
         },
@@ -45,16 +41,26 @@ module.exports = function (app) {
             type: DataTypes.TEXT,
             allowNull: true
         },
-        receiverId: {
-            type: DataTypes.INTEGER,
-            allowNull: true
-        },
         brand: {
             type: DataTypes.STRING,
             allowNull: false
         },
         finishedDate: {
             type: DataTypes.DATE,
+            allowNull: true
+        },
+        weight: {
+            type: DataTypes.DECIMAL,
+            allowNull: true,
+            defaultValue: 0
+        },
+        unitPrice: {
+            type: DataTypes.DECIMAL,
+            allowNull: true,
+            defaultValue: 0
+        },
+        orderEmail: {
+            type: DataTypes.STRING,
             allowNull: true
         }
     }, {
@@ -77,10 +83,6 @@ module.exports = function (app) {
             as: 'bills',
             foreignKey: 'reservationId',
             targetKey: 'id'
-        })
-
-        reservations.belongsTo(models.receivers, {
-            foreignKey: 'receiverId'
         })
 
         reservations.belongsTo(models.users, {
