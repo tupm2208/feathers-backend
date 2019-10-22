@@ -6,12 +6,6 @@ const DataTypes = Sequelize.DataTypes;
 module.exports = function (app) {
   const sequelizeClient = app.get('sequelizeClient');
   const users = sequelizeClient.define('users', {
-
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
-    },
     password: {
       type: DataTypes.STRING,
       allowNull: false
@@ -34,10 +28,6 @@ module.exports = function (app) {
       allowNull: true
     },
     role: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    email: {
       type: DataTypes.STRING,
       allowNull: false
     },

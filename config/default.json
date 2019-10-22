@@ -58,7 +58,7 @@
     },
     "local": {
       "entity": "user",
-      "usernameField": "email",
+      "usernameField": "phone",
       "passwordField": "password"
     }
   },
