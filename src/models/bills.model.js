@@ -68,11 +68,6 @@ module.exports = function (app) {
       type: DataTypes.STRING,
       allowNull: true,
       defaultValue: ''
-    },
-    total: {
-      type: DataTypes.DECIMAL,
-      allowNull: true,
-      defaultValue: 0
     }
   }, {
     hooks: {

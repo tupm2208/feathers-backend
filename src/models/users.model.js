@@ -40,6 +40,10 @@ module.exports = function (app) {
     exchangeOdds: {
       type: DataTypes.INTEGER,
       defaultValue: 0
+    },
+    helpFee: {
+      type: DataTypes.DECIMAL,
+      defaultValue: 1
     }
   }, {
     hooks: {

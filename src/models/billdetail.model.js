@@ -45,7 +45,7 @@ module.exports = function (app) {
       allowNull: true,
       defaultValue: 0
     },
-    afterCodePrice: {
+    total: {
       type: DataTypes.DECIMAL,
       allowNull: true,
       defaultValue: 0
