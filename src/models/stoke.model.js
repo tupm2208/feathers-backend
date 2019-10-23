@@ -18,7 +18,7 @@ module.exports = function (app) {
       defaultValue: 0
     },
     stokePrice: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.FLOAT,
       allowNull: false,
       defaultValue: 0
     },
@@ -36,12 +36,12 @@ module.exports = function (app) {
       allowNull: true
     },
     retailPrice: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.FLOAT,
       allowNull: true,
       defaultValue: 0
     },
     wholesale: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.FLOAT,
       allowNull: true,
       defaultValue: 0
     },

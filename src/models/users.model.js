@@ -20,11 +20,11 @@ module.exports = function (app) {
       unique: true
     },
     generalAddress: {
-      type: DataTypes.TEXT,
+      type: DataTypes.TEXT + ' CHARSET utf8 COLLATE utf8_unicode_ci',
       allowNull: true
     },
     detailAddress: {
-      type: DataTypes.TEXT,
+      type: DataTypes.TEXT + ' CHARSET utf8 COLLATE utf8_unicode_ci',
       allowNull: true
     },
     role: {
@@ -42,7 +42,7 @@ module.exports = function (app) {
       defaultValue: 0
     },
     helpFee: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.FLOAT,
       defaultValue: 1
     }
   }, {

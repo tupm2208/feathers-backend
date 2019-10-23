@@ -23,7 +23,7 @@ module.exports = function (app) {
       allowNull: false
     },
     price: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.FLOAT,
       allowNull: false
     },
     keepBox: {
@@ -36,17 +36,17 @@ module.exports = function (app) {
       allowNull: true
     },
     code: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.FLOAT,
       allowNull: true,
       defaultValue: 0
     },
     webFee: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.FLOAT,
       allowNull: true,
       defaultValue: 0
     },
     total: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.FLOAT,
       allowNull: true,
       defaultValue: 0
     }

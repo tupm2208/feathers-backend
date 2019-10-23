@@ -27,22 +27,22 @@ module.exports = function (app) {
       allowNull: false
     },
     deposit: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.FLOAT,
       allowNull: true,
       defaultValue: 0
     },
     exchangeRate: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.FLOAT,
       allowNull: true,
       defaultValue: 0
     },
     shipFee: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.FLOAT,
       allowNull: true,
       defaultValue: 0
     },
     surcharge: {
-      type: DataTypes.STRING,
+      type: DataTypes.FLOAT,
       allowNull: true,
       defaultValue: 0
     },
@@ -51,16 +51,21 @@ module.exports = function (app) {
       allowNull: false
     },
     note: {
-      type: DataTypes.TEXT,
+      type: DataTypes.TEXT + ' CHARSET utf8 COLLATE utf8_unicode_ci',
       allowNull: true
     },
     weight: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.FLOAT,
       allowNull: true,
       defaultValue: 0
     },
     unitPrice: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.FLOAT,
+      allowNull: true,
+      defaultValue: 0
+    },
+    helpFee: {
+      type: DataTypes.FLOAT,
       allowNull: true,
       defaultValue: 0
     },

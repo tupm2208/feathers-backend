@@ -27,17 +27,17 @@ module.exports = function (app) {
             allowNull: false
         },
         price: {
-            type: DataTypes.DECIMAL,
+            type: DataTypes.FLOAT,
             allowNull: true,
             defaultValue: 0
         },
         code: {
-            type: DataTypes.DECIMAL,
+            type: DataTypes.FLOAT,
             allowNull: true,
             defaultValue: 0
         },
         webFee: {
-            type: DataTypes.DECIMAL,
+            type: DataTypes.FLOAT,
             allowNull: true,
             defaultValue: 0
         }

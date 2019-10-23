@@ -15,7 +15,7 @@ module.exports = function (app) {
             allowNull: false
         },
         yenAmount: {
-            type: DataTypes.DECIMAL,
+            type: DataTypes.FLOAT,
             allowNull: true,
             defaultValue: 0
         },
@@ -24,7 +24,7 @@ module.exports = function (app) {
             allowNull: false
         },
         deposit: {
-            type: DataTypes.DECIMAL,
+            type: DataTypes.FLOAT,
             allowNull: true,
             defaultValue: 0
         },
@@ -38,7 +38,7 @@ module.exports = function (app) {
             allowNull: false
         },
         note: {
-            type: DataTypes.TEXT,
+            type: DataTypes.TEXT + ' CHARSET utf8 COLLATE utf8_unicode_ci',
             allowNull: true
         },
         brand: {
@@ -50,12 +50,12 @@ module.exports = function (app) {
             allowNull: true
         },
         weight: {
-            type: DataTypes.DECIMAL,
+            type: DataTypes.FLOAT,
             allowNull: true,
             defaultValue: 0
         },
         unitPrice: {
-            type: DataTypes.DECIMAL,
+            type: DataTypes.FLOAT,
             allowNull: true,
             defaultValue: 0
         },

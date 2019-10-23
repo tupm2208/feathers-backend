@@ -24,7 +24,7 @@ module.exports = function (app) {
       defaultValue: 0
     },
     weight: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.FLOAT,
       allowNull: false,
       defaultValue: 0
     },
@@ -44,12 +44,12 @@ module.exports = function (app) {
       defaultValue: false
     },
     premiumValue: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.FLOAT,
       allowNull: true,
       defaultValue: 0
     },
     note: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING + ' CHARSET utf8 COLLATE utf8_unicode_ci',
       allowNull: true
     }
   }, {
