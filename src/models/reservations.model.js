@@ -16,12 +16,10 @@ module.exports = function (app) {
         },
         yenAmount: {
             type: DataTypes.FLOAT,
-            allowNull: true,
             defaultValue: 0
         },
         wayBillCode: {
             type: DataTypes.STRING,
-            allowNull: false
         },
         deposit: {
             type: DataTypes.FLOAT,
@@ -30,7 +28,6 @@ module.exports = function (app) {
         },
         exchangeRate: {
             type: DataTypes.FLOAT,
-            allowNull: false,
             defaultValue: 0
         },
         status: {
@@ -62,6 +59,10 @@ module.exports = function (app) {
         orderEmail: {
             type: DataTypes.STRING,
             allowNull: true
+        },
+        reservationName: {
+            type: DataTypes.STRING,
+            allowNull: true,
         }
     }, {
             hooks: {

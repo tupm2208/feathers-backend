@@ -17,6 +17,13 @@ function order(context) {
     }
 
     context.params.query = query;
+    // console.log("query: ", query)
+
+    if(query.role == 'shiper') {
+      query.role = {
+        $or: ['shiperjp', 'shiperuk']
+      }
+    }
 }
 
 function setUpdatedAt(data) {

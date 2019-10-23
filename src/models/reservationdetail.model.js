@@ -18,6 +18,9 @@ module.exports = function (app) {
             allowNull: false,
             unique: false
         },
+        link: {
+            type: DataTypes.STRING,
+        },
         quantity: {
             type: DataTypes.INTEGER,
             allowNull: false
