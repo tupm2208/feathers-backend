@@ -20,11 +20,11 @@ module.exports = function (app) {
       unique: true
     },
     generalAddress: {
-      type: DataTypes.TEXT + ' CHARSET utf8 COLLATE utf8_unicode_ci',
+      type: DataTypes.TEXT,
       allowNull: true
     },
     detailAddress: {
-      type: DataTypes.TEXT + ' CHARSET utf8 COLLATE utf8_unicode_ci',
+      type: DataTypes.TEXT,
       allowNull: true
     },
     role: {

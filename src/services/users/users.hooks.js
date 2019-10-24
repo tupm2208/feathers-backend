@@ -24,6 +24,12 @@ function order(context) {
         $or: ['shiperjp', 'shiperuk']
       }
     }
+
+    if(query.role == 'innerShip') {
+      query.role = {
+        $or: ['urbanShiper', 'suburbShip']
+      }
+    }
 }
 
 function setUpdatedAt(data) {

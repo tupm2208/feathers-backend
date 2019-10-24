@@ -29,7 +29,7 @@ module.exports = function (app) {
       allowNull: false
     },
     note: {
-      type: DataTypes.STRING + ' CHARSET utf8 COLLATE utf8_unicode_ci',
+      type: DataTypes.STRING,
       allowNull: true
     }
   }, {

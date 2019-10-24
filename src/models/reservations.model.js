@@ -35,7 +35,7 @@ module.exports = function (app) {
             allowNull: false
         },
         note: {
-            type: DataTypes.TEXT + ' CHARSET utf8 COLLATE utf8_unicode_ci',
+            type: DataTypes.TEXT,
             allowNull: true
         },
         brand: {
