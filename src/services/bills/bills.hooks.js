@@ -5,7 +5,7 @@ function associate(hook) {
         const AssociatedModel = hook.app.services.billdetail.Model;
         const UserModel = hook.app.services.users.Model;
 		hook.params.sequelize = {
-            include: [{ model: AssociatedModel, as: 'billdetail',required: false }, {model: UserModel, as: 'user', attributes: ['id', 'name', 'role','phone', 'exchangeOdds']}],
+            include: [{ model: AssociatedModel, as: 'billdetail',required: false }, {model: UserModel, as: 'user', attributes: ['id', 'name', 'role','phone', 'exchangeOdds', 'helpFee', 'generalAddress', 'detailAddress']}],
             raw: false
 		};
 	}

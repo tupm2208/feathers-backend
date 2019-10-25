@@ -50,7 +50,9 @@ module.exports = function (app) {
     operatorsAliases,
     define: {
       freezeTableName: true,
-      timestamps: false
+      timestamps: false,
+      charset: 'utf8',
+      collate: 'utf8_general_ci'
     }
   });
   const oldSetup = app.setup;

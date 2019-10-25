@@ -10,6 +10,10 @@ module.exports = function (app) {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    billId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     remainingMoney: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -24,18 +28,34 @@ module.exports = function (app) {
       allowNull: true,
       defaultValue: 0
     },
-    reservationId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
     note: {
       type: DataTypes.STRING,
       allowNull: true
+    },
+    address: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    receiverName: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    phone: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    status: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    createdDate: {
+      type: DataTypes.DATE,
+      allowNull: false
     }
   }, {
     hooks: {
       beforeCount(options) {
-        options.raw = true;
+        options.raw = false;
       }
     }
   });
@@ -46,6 +66,12 @@ module.exports = function (app) {
     // See http://docs.sequelizejs.com/en/latest/docs/associations/
     urbanship.belongsTo(models.users, {
         foreignKey: 'userId'
+    })
+
+    urbanship.hasMany(models.billdetail,{
+      as: 'billdetail',
+      foreignKey: 'billId',
+      sourceKey: 'billId'
     })
   };
 

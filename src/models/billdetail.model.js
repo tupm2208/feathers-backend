@@ -61,9 +61,9 @@ module.exports = function (app) {
   billdetail.removeAttribute('id');
   // eslint-disable-next-line no-unused-vars
   billdetail.associate = function (models) {
-    billdetail.belongsTo(models['billdetail'],{
-      foreignKey: 'billId',
-    })
+    // billdetail.belongsTo(models['billdetail'],{
+    //   foreignKey: 'billId',
+    // })
   };
 
   return billdetail;
