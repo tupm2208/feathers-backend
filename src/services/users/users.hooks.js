@@ -58,7 +58,7 @@ module.exports = {
     all: [],
     find: [ authenticate('jwt'), grantRights, order ],
     get: [ authenticate('jwt'), grantRights ],
-    create: [ hashPassword(), setRole ],
+    create: [ authenticate('jwt'), hashPassword(), setRole ],
     update: [ hashPassword(),  authenticate('jwt'), grantRights, setRole ],
     patch: [ hashPassword(),  authenticate('jwt'), grantRights, setRole ],
     remove: [ authenticate('jwt'), grantRights, setRole ]

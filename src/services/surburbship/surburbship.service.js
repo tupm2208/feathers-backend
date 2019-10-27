@@ -1,7 +1,7 @@
-// Initializes the `suburbship` service on path `/suburbship`
+// Initializes the `surburbship` service on path `/surburbship`
 const createService = require('feathers-sequelize');
-const createModel = require('../../models/suburbship.model');
-const hooks = require('./suburbship.hooks');
+const createModel = require('../../models/surburbship.model');
+const hooks = require('./surburbship.hooks');
 
 module.exports = function (app) {
   const Model = createModel(app);
@@ -13,10 +13,10 @@ module.exports = function (app) {
   };
 
   // Initialize our service with any options it requires
-  app.use('/suburbship', createService(options));
+  app.use('/surburbship', createService(options));
 
   // Get our initialized service so that we can register hooks
-  const service = app.service('suburbship');
+  const service = app.service('surburbship');
 
   service.hooks(hooks);
 };

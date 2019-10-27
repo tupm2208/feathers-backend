@@ -5,14 +5,14 @@ const DataTypes = Sequelize.DataTypes;
 
 module.exports = function (app) {
   const sequelizeClient = app.get('sequelizeClient');
-  const suburbship = sequelizeClient.define('suburbship', {
-    userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
+  const surburbship = sequelizeClient.define('surburbship', {
     seperatedCode: {
       type: DataTypes.STRING,
       allowNull: true,
+    },
+    billId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     },
     productName: {
       type: DataTypes.STRING,
@@ -33,13 +33,30 @@ module.exports = function (app) {
       allowNull: true,
       defaultValue: 0
     },
+    remainingMoney: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      defaultValue: 0
+    },
+    receiverName: {
+      type: DataTypes.STRING
+    },
+    receiverPhone: {
+      type: DataTypes.STRING
+    },
+    generalAddress: {
+      type: DataTypes.STRING
+    },
+    detailAddress: {
+      type: DataTypes.STRING
+    },
     isNightShip: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.INTEGER,
       allowNull: true,
       defaultValue: false
     },
     freeShip: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.INTEGER,
       allowNull: true,
       defaultValue: false
     },
@@ -48,10 +65,24 @@ module.exports = function (app) {
       allowNull: true,
       defaultValue: 0
     },
+    isGetNight: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      defaultValue: 0
+    },
     note: {
       type: DataTypes.STRING,
       allowNull: true
-    }
+    },
+    createdDate: {
+      type: DataTypes.DATE,
+      allowNull: false
+    }, 
+    status: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 6
+    },
   }, {
     hooks: {
       beforeCount(options) {
@@ -61,13 +92,15 @@ module.exports = function (app) {
   });
 
   // eslint-disable-next-line no-unused-vars
-  suburbship.associate = function (models) {
+  surburbship.associate = function (models) {
     // Define associations here
     // See http://docs.sequelizejs.com/en/latest/docs/associations/
-    suburbship.belongsTo(models.users, {
-      foreignKey: 'userId'
+    surburbship.hasMany(models.billdetail,{
+      as: 'billdetail',
+      foreignKey: 'billId',
+      sourceKey: 'billId'
     })
   };
 
-  return suburbship;
+  return surburbship;
 };
