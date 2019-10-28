@@ -10,7 +10,6 @@ const products = require('./products/products.service.js');
 const stoke = require('./stoke/stoke.service.js');
 const urbanship = require('./urbanship/urbanship.service.js');
 const surburbship = require('./surburbship/surburbship.service.js');
-const myproduct = require('./myproduct/myproduct.service.js');
 // eslint-disable-next-line no-unused-vars
 module.exports = function (app) {
   app.configure(users);
@@ -25,5 +24,4 @@ module.exports = function (app) {
   app.configure(stoke);
   app.configure(urbanship);
   app.configure(surburbship);
-  app.configure(myproduct);
 };

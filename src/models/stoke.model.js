@@ -9,7 +9,6 @@ module.exports = function (app) {
     productId: {
       type: DataTypes.STRING,
       allowNull: false,
-      primaryKey: true,
       unique: false
     },
     quantity: {
@@ -45,9 +44,9 @@ module.exports = function (app) {
       allowNull: true,
       defaultValue: 0
     },
-    reservationName: {
-      type: DataTypes.STRING,
-      allowNull: true
+    reservationId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     },
     orderEmail: {
       type: DataTypes.STRING,
@@ -65,6 +64,9 @@ module.exports = function (app) {
   stoke.associate = function (models) {
     // Define associations here
     // See http://docs.sequelizejs.com/en/latest/docs/associations/
+    stoke.belongsTo(models.reservations, {
+      foreignKey: 'reservationId'
+  })
   };
 
   return stoke;
